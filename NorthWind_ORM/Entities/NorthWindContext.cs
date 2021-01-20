@@ -1,3 +1,4 @@
+using NorthWind_ORM.Entities;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -22,9 +23,26 @@ namespace NorthWind_ORM
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<EmployeeCard> CreditCards { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Territory> Territories { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Region>()
+                .Property(e => e.RegionDescription)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Region>()
+                .HasMany(e => e.Territories)
+                .WithRequired(e => e.Region)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Territory>()
+               .Property(e => e.TerritoryDescription)
+               .IsFixedLength();
+
             modelBuilder.Entity<CustomerDemographic>()
                 .Property(e => e.CustomerTypeID)
                 .IsFixedLength();
@@ -78,6 +96,12 @@ namespace NorthWind_ORM
                 .HasMany(e => e.Orders)
                 .WithOptional(e => e.Shipper)
                 .HasForeignKey(e => e.ShipVia);
+
+            modelBuilder.Entity<Employee>()
+                  .HasMany(e => e.CreditCards)
+                  .WithRequired(e => e.Employee)
+                  .HasForeignKey(e => e.EmployeeID);
+
         }
     }
 }

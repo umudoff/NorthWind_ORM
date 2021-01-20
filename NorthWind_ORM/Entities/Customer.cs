@@ -55,5 +55,6 @@ namespace NorthWind_ORM
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerDemographic> CustomerDemographics { get; set; }
+        public DateTime? FoundationDate { get; set; }
     }
 }

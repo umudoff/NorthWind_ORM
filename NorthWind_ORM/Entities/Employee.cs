@@ -1,5 +1,6 @@
 namespace NorthWind_ORM
 {
+    using NorthWind_ORM.Entities;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -79,5 +80,7 @@ namespace NorthWind_ORM
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+
+        public virtual ICollection<EmployeeCard> CreditCards { get; set; }
     }
 }

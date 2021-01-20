@@ -42,7 +42,8 @@ namespace NorthWind_ORM
                     Console.WriteLine("Customer:"+o.ContactName+"; Product: "+d.ProductName+";  OrderID:"+d.OrderID+"; Quantity:"+d.Quantity+"; UnitPrice: "+d.UnitPrice);
                 }
             }
-          
+
+           
             Console.ReadLine();
         }
     }
